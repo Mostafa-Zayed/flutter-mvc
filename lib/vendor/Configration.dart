@@ -12,6 +12,8 @@
  * @copyright 
  * @license   
  */
+import 'package:flutter_mvc/app/models/Language.dart';
+
 class Configration{
 
   // ignore: non_constant_identifier_names
@@ -39,7 +41,7 @@ class Configration{
   /*
    *  this method for testing only
    */
-  Map<String,dynamic> showEnviroment(){
+  static Map<String,dynamic> showEnviroment(){
     return Configration.environment;
   }
 
@@ -73,12 +75,30 @@ class Configration{
   }
 
   /*
-   * this medthod get full endpoint api with module name depending of env app file
+   * this method get full endpoint api with module name depending of env app file
    *
    * @return String
    */
   static String getModuleEndPoint(){
     return ! Configration.environment['module'].isEmpty ? Configration.BASE_ENDPOINT + Configration.environment['module'] : Configration.BASE_ENDPOINT;
+  }
+
+  /*
+   * this method get init app languages from evn app as collection of Language model 
+   * 
+   * @return List<Language> for using throw app runing for example[screens]
+   */
+  static List<Language> getLanguages(){
+    return Configration.environment['languages'];
+  }
+
+  /*
+   * this method get app evironment mode 
+   * 
+   * @return String
+   */
+  static String env() {
+    return Configration.environment['app_env'];
   }
 
 }
